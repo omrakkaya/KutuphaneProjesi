@@ -1,0 +1,78 @@
+﻿@model List<KitapTuru>
+
+@if (TempData["success"] != null)
+{
+    <div class="alert alert-dismissible alert-success">
+        <h2 class="">@TempData["success"]</h2>
+    </div>
+}
+
+<div class="container">
+
+    <div class="row pt-3 pb-4">
+
+        <div>
+
+            <h1>Kitap Türleri</h1>
+
+        </div>
+
+    </div>
+
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+
+                <th>
+                    Kitap Türü
+                </th>
+
+                <th>
+
+                </th>
+
+                <th>
+
+                </th>
+
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var kitapTuru in Model)
+            {
+                <tr>
+                    <td>
+                        @kitapTuru.Id
+                    </td>
+
+                    <td>
+                        @kitapTuru.Ad
+                    </td>
+
+                    <td>
+                        <a asp-controller="KitapTuru" asp-action="Guncelle" asp-route-id="@kitapTuru.Id" type="button" class="btn btn-primary btn-success" style="width:250px">Güncelle</a>
+                    </td>
+
+                    <td>
+                        <a asp-controller="KitapTuru" asp-action="Sil" asp-route-id="@kitapTuru.Id" type="button" class="btn btn-primary btn-danger" style="width:250px">Sil</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div class="d-grip gap-2">
+    <div>
+        <a asp-controller="KitapTuru" asp-action="Ekle" class="btn btn-lg btn-primary" type="button">Yeni Kitap Türü Oluştur</a>
+    </div>
+</div>
