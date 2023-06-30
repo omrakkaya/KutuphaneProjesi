@@ -22,7 +22,7 @@ namespace EmrinCoder.Controllers
             return View(objKitapList);
         }
 
-        public IActionResult Ekle()
+        public IActionResult EkleGuncelle(int? id)
         {
             IEnumerable<SelectListItem> KitapTuruList = _kitapTuruRepository.GetAll()
                 .Select(k => new SelectListItem
@@ -35,11 +35,24 @@ namespace EmrinCoder.Controllers
 
             ViewBag.KitapTuruList = KitapTuruList;
 
-            return View();
+            if (id == null || id == 0)
+            {//ekle
+                return View();
+            }
+            else
+            {//Guncelle
+                Kitap? kitapVt = _kitapRepository.Get(u => u.Id == id);
+                if (id == null || id == 0)
+                {
+                    return NotFound();
+                }
+                return View(kitapVt);
+            }
+
         }
 
         [HttpPost]
-        public IActionResult Ekle(Kitap kitap)
+        public IActionResult EkleGuncelle(Kitap kitap, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
@@ -51,7 +64,7 @@ namespace EmrinCoder.Controllers
             return View();
         }
 
-        public IActionResult Guncelle(int? id)
+        /*public IActionResult Guncelle(int? id)
         {
             if (id == null || id == 0)
             {
@@ -66,7 +79,8 @@ namespace EmrinCoder.Controllers
             }
             return View(kitapVt);
         }
-
+        */
+        /*
         [HttpPost]
         public IActionResult Guncelle(Kitap kitap)
         {
@@ -75,7 +89,7 @@ namespace EmrinCoder.Controllers
             TempData["success"] = "Kitap Başarıyla Güncellenmiştir.";
             return RedirectToAction("Index");
         }
-
+        */
         public IActionResult Sil(int? id)
         {
             if (id == null || id == 0)
