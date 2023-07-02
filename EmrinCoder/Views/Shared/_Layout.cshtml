@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using EmrinCoder.Utility;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,16 +23,30 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @if (User.IsInRole(UserRoles.Role_Admin))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="KitapTuru" asp-action="Index">Kitap Türleri</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Kitap" asp-action="Index">Kitap İşlemleri</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Kiralama" asp-action="Index">Kiralama İşlemi</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(UserRoles.Role_Ogrenci))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Kitap" asp-action="Index">Kitaplar</a>
+                            </li>
+                        }
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="KitapTuru" asp-action="Index">Kitap Türleri</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Kitap" asp-action="Index">Kitaplar</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">İletişim</a>
                         </li>
                     </ul>
+
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -44,7 +59,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - EmrinCoder - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 Ömer Akkaya - EmrinCoder - <a asp-area="" asp-controller="Home" asp-action="Privacy">İletişim</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

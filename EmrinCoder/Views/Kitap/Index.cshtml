@@ -1,4 +1,5 @@
-﻿@model List<Kitap>
+﻿@using EmrinCoder.Utility;
+@model List<Kitap>
 
 @if (TempData["success"] != null)
 {
@@ -24,6 +25,10 @@
         <thead>
             <tr>
                 <th>
+
+                </th>
+
+                <th>
                     Id
                 </th>
 
@@ -34,28 +39,29 @@
                 <th>
                     Kitap Türü
                 </th>
-               
+
                 <th>
                     Tanım
                 </th>
-                
+
                 <th>
                     Yazar
                 </th>
-                
+
                 <th>
                     Fiyat
                 </th>
+                @if (User.IsInRole(UserRoles.Role_Admin))
+                {
+                    <th>
 
-                <th>
+                    </th>
 
-                </th>
+                    <th>
 
-                <th>
+                    </th>
 
-                </th>
-
-
+                }
             </tr>
         </thead>
 
@@ -63,37 +69,44 @@
             @foreach (var kitap in Model)
             {
                 <tr>
-                    <td>
+
+                    <td align="center" valign="middle">
+                        <img src="@kitap.ResimUrl" style="border-radius: 7px; border: 1px solid #bbb9b9; max-width: 145px; max:275px" />
+                    </td>
+
+                    <td align="center" valign="middle">
                         @kitap.Id
                     </td>
 
-                    <td>
+                    <td align="center" valign="middle">
                         @kitap.KitapAdi
                     </td>
 
-                    <td>
-                        @kitap.KitapTuruId
+                    <td align="center" valign="middle">
+                        @kitap.KitapTuru.Ad
                     </td>
 
-                    <td>
+                    <td align="center" valign="middle">
                         @kitap.Tanim
                     </td>
 
-                    <td>
+                    <td align="center" valign="middle">
                         @kitap.Yazar
                     </td>
 
-                    <td>
+                    <td align="center" valign="middle">
                         @kitap.Fiyat₺
                     </td>
+                    @if (User.IsInRole(UserRoles.Role_Admin))
+                    {
+                        <td align="center" valign="middle">
+                            <a asp-controller="Kitap" asp-action="EkleGuncelle" asp-route-id="@kitap.Id" type="button" class="btn btn-primary btn-success" style="width:250px">Güncelle</a>
+                        </td>
 
-                    <td>
-                        <a asp-controller="Kitap" asp-action="EkleGuncelle" asp-route-id="@kitap.Id" type="button" class="btn btn-primary btn-success" style="width:250px">Güncelle</a>
-                    </td>
-
-                    <td>
-                        <a asp-controller="Kitap" asp-action="Sil" asp-route-id="@kitap.Id" type="button" class="btn btn-primary btn-danger" style="width:250px">Sil</a>
-                    </td>
+                        <td align="center" valign="middle">
+                            <a asp-controller="Kitap" asp-action="Sil" asp-route-id="@kitap.Id" type="button" class="btn btn-primary btn-danger" style="width:250px">Sil</a>
+                        </td>
+                    }
                 </tr>
             }
 
@@ -102,9 +115,11 @@
     </table>
 
 </div>
-
-<div class="d-grip gap-2">
-    <div>
-        <a asp-controller="Kitap" asp-action="EkleGuncelle" class="btn btn-lg btn-primary" type="button">Yeni Kitap Oluştur</a>
+@if (User.IsInRole(UserRoles.Role_Admin))
+{
+    <div class="d-grip gap-2">
+        <div>
+            <a asp-controller="Kitap" asp-action="EkleGuncelle" class="btn btn-lg btn-primary" type="button">Yeni Kitap Oluştur</a>
+        </div>
     </div>
-</div>
+}

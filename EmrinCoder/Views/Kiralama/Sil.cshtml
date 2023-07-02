@@ -1,0 +1,32 @@
+﻿@model Kiralama
+
+<form method="post">
+    <div class="border p-3 mt-5">
+        <div class="row pb-3">
+            <h2 class="alert alert-dismissible alert-warning">Kiralama Kayıt Silmek İstediğinize Emin Misiniz?</h2>
+            </hr>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="OgrenciId" class="p-0"></label>
+            <input asp-for="OgrenciId" disabled class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="KitapId" class="p-0"></label>
+            <select asp-for="KitapId" asp-items="ViewBag.KitapList" disabled class="form-select">
+            </select>
+            <div class="mt-2">
+                <span asp-validation-for="KitapId" class="text-danger alert-danger"></span>
+            </div>
+
+        </div>
+
+
+        <button type="submit" class="btn btn-lg btn-primary" style="width:250px">Kiralama Kayıt Sil</button>
+
+        <a asp-controller="Kiralama" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">Kİralama Listesine Dön</a>
+    </div>
+
+</form>

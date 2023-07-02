@@ -1,0 +1,68 @@
+﻿@model Kiralama
+
+<form method="post" enctype="multipart/form-data">
+
+
+    <div class="row">
+        <div class="col-10">
+            <div class="border p-3 mt-5">
+                <div class="row pb-3">
+                    <h2 class="text-primary">@(Model == null ? "Yeni Kiralama" : "Kiralama Güncelle")</h2>
+                    </hr>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="OgrenciId" class="p-0"></label>
+                    <input asp-for="OgrenciId" class="form-control" />
+                    <div class="mt-2">
+                        <span asp-validation-for="OgrenciId" class="text-danger alert-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="KitapId" class="p-0"></label>
+                    <select asp-for="KitapId" asp-items="ViewBag.KitapList" class="form-select">
+                    </select>
+                    <div class="mt-2">
+                        <span asp-validation-for="KitapId" class="text-danger alert-danger"></span>
+                    </div>
+
+                </div>
+
+
+
+                <div class="mb-3">
+
+                    @if (Model != null)
+                    {
+                        <button type="submit" class="btn btn-lg btn-primary" style="width:250px">Kiralama Güncelle</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-lg btn-primary" style="width:250px">Kirala</button>
+                    }
+
+
+
+                    <a asp-controller="Kiralama" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">
+                        Geri Dön
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-2">
+            <br/>
+            @if (Model != null)
+            {
+                <img src="@Model.Kitap.ResimUrl" width="100%" style="border-radius:7px; border:1px solid #bbb9b9" />
+            }
+
+        </div>
+    </div>
+
+
+</form>
+

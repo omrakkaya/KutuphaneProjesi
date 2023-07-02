@@ -1,9 +1,11 @@
 ﻿using EmrinCoder.Utility;
 using EmrinCoder.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmrinCoder.Controllers
 {
+    [Authorize(Roles = UserRoles.Role_Admin)]
     public class KitapTuruController : Controller
     {
         private readonly IKitapTuruRepository _kitapTuruRepository;

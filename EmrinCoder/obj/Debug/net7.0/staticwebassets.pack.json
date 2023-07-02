@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Akkaya\\source\\repos\\EmrinCoder\\EmrinCoder\\wwwroot\\img\\4.1407fd059bc253eb51b014602d886a85.jpg",
+      "PackagePath": "staticwebassets\\img\\4.1407fd059bc253eb51b014602d886a85.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Akkaya\\source\\repos\\EmrinCoder\\EmrinCoder\\wwwroot\\img\\şibumi.jpg",
+      "PackagePath": "staticwebassets\\img\\şibumi.jpg"
+    },
+    {
       "Id": "C:\\Users\\Akkaya\\source\\repos\\EmrinCoder\\EmrinCoder\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
